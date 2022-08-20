@@ -759,6 +759,6 @@ PlayerSettings:
   projectName: Team_Maverick-Baby_Escape
   organizationId: gulraiz75
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
-  disableOldInputManagerSupport: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
+  disableOldInputManagerSupport: 1
   legacyClampBlendShapeWeights: 0
