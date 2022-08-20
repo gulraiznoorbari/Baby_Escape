@@ -28,8 +28,8 @@ public class EnemyMovement : MonoBehaviour
             .Append(transform.DORotate(new Vector3(0, 180, 0), 0.5f, RotateMode.FastBeyond360))
             .Append(transform.DOMoveX(-3.25f, 1f))
             .Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f, RotateMode.FastBeyond360))
-            .SetLoops(-1)
-            .SetEase(Ease.Linear);
+            .SetEase(Ease.Linear)
+            .SetLoops(-1);
     }
 
     // Movement Using Lerp() and Coroutine:
