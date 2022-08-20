@@ -9,11 +9,30 @@ public class EnemyMovement : MonoBehaviour
     //[SerializeField] private Transform EndPoint;
     //[SerializeField] private float LerpSpeed = 1f;
     //[SerializeField] private float _rotationSpeed = 40f;
+    private Sequence _sequence;
 
-    private void Awake()
+    // Movement Using Tweening:
+
+    private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        PlayEnemyMovementSequence();
     }
+
+    private void PlayEnemyMovementSequence()
+    {
+        _sequence?.Kill();
+
+        _sequence = DOTween.Sequence()
+            .Append(transform.DOMoveX(3, 1f))
+            .Append(transform.DORotate(new Vector3(0, 180, 0), 0.5f, RotateMode.FastBeyond360))
+            .Append(transform.DOMoveX(-3.25f, 1f))
+            .Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f, RotateMode.FastBeyond360))
+            .SetLoops(-1)
+            .SetEase(Ease.Linear);
+    }
+
+    // Movement Using Lerp() and Coroutine:
 
     //private void Start()
     //{
