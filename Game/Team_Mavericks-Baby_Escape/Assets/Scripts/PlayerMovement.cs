@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,13 +30,6 @@ public class PlayerMovement : MonoBehaviour
                 // World space position is basically what transform.position is.
                 _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, _movementDirection, Time.fixedDeltaTime * _speed));
 
-                ////Rotate towards the direction of the movement (w/o slerp):
-                //Quaternion toRotation = Quaternion.LookRotation(_movementDirection);
-                //transform.rotation = Quaternion.RotateTowards(
-                //    transform.rotation, 
-                //    toRotation, 
-                //    _rotationSpeed * Time.fixedDeltaTime);
-
                 //Rotate towards the direction of the movement (w/ slerp):
                 _rigidbody.transform.rotation = Quaternion.Slerp(
                     _rigidbody.transform.rotation,
@@ -42,5 +37,19 @@ public class PlayerMovement : MonoBehaviour
                     Time.fixedDeltaTime * _rotationSpeed);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Collectible"))
+        {
+            StartCoroutine(Restart());
+        }
+    }
+
+    private IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

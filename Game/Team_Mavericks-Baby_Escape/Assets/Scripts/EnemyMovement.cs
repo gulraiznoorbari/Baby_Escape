@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
@@ -11,6 +12,15 @@ public class EnemyMovement : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         PlayEnemyMovementSequence();
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
     }
 
     private void PlayEnemyMovementSequence()
