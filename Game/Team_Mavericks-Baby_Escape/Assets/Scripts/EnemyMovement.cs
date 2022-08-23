@@ -14,15 +14,6 @@ public class EnemyMovement : MonoBehaviour
         PlayEnemyMovementSequence();
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-            {
-                Destroy(gameObject);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-    }
-
     private void PlayEnemyMovementSequence()
     {
         _sequence?.Kill();
