@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
@@ -20,9 +19,9 @@ public class EnemyMovement : MonoBehaviour
 
         _sequence = DOTween.Sequence()
             .Append(transform.DOMoveX(3, 1.5f))
-            .Append(transform.DORotate(new Vector3(0, 180, 0), 0.7f, RotateMode.FastBeyond360))
+            .Append(transform.DORotate(new Vector3(0, 270, 0), 0.7f, RotateMode.FastBeyond360))
             .Append(transform.DOMoveX(-3.3f, 1.5f))
-            .Append(transform.DORotate(new Vector3(0, 0, 0), 0.7f, RotateMode.FastBeyond360))
+            .Append(transform.DORotate(new Vector3(0, 90, 0), 0.7f, RotateMode.FastBeyond360))
             .SetEase(Ease.Linear)
             .SetLoops(-1);
     }
