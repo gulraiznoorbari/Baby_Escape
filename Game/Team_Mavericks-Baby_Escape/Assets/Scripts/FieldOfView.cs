@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class FieldOfView : MonoBehaviour
@@ -43,10 +44,14 @@ public class FieldOfView : MonoBehaviour
                 // Distance from target:
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
+                // Player Detection through Raycast:
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
                 {
                     _CanSeePlayer = true;
-                    Debug.Log("Player Spotted!");
+                    //Debug.Log("Player Spotted!");
+                    Handheld.Vibrate();
+                    Destroy(gameObject, 3f);
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
 
                 else
