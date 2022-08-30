@@ -50,7 +50,7 @@ public class FieldOfView : MonoBehaviour
                     _CanSeePlayer = true;
                     //Debug.Log("Player Spotted!");
                     Handheld.Vibrate();
-                    Destroy(gameObject, 3f);
+                    Destroy(gameObject);
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
 

@@ -4,22 +4,29 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator _animator;
     private Rigidbody _rigidbody;
     private Touch _touch;
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
 
-    private void Awake()
+    int isRunningKey;
+
+    private void Start()
     {
+        _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
+
+        isRunningKey = Animator.StringToHash("isRunning");
     }
 
     private void FixedUpdate()
     {
-        if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             _touch = Input.GetTouch(0);
-            if(_touch.phase == TouchPhase.Stationary || _touch.phase == TouchPhase.Moved)
+            _animator.SetBool(isRunningKey, true);
+            if(_touch.phase == TouchPhase.Moved)
             {
                 Vector3 _movementDirection = new Vector3(
                     transform.position.x + _touch.deltaPosition.x,
@@ -35,7 +42,16 @@ public class PlayerMovement : MonoBehaviour
                     _rigidbody.transform.rotation,
                     Quaternion.LookRotation(_movementDirection),
                     Time.fixedDeltaTime * _rotationSpeed);
+                _animator.SetBool(isRunningKey, true);
             }
+            else if (_touch.phase == TouchPhase.Ended)
+            {
+                _animator.SetBool(isRunningKey, false);
+            }
+        }
+        else if (Input.touchCount <= 0)
+        {
+            _animator.SetBool(isRunningKey, false);
         }
     }
 
@@ -49,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Restart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
