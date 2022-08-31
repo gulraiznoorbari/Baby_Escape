@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - EnemyRadar
   - Door
+  - Props
   layers:
   - Default
   - TransparentFX
