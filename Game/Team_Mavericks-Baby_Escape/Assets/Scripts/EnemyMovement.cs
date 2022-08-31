@@ -26,13 +26,13 @@ public class EnemyMovement : MonoBehaviour
         _sequence = DOTween.Sequence()
             .AppendCallback(PlayIdleAnimation)
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(3.3f, 2f))
+            .Join(transform.DOMoveX(3.3f, 2.5f))
             .AppendCallback(PlayRotateAnimation)
-            .Join(transform.DORotate(new Vector3(0, 270, 0), 0.7f, RotateMode.FastBeyond360))
+            .Join(transform.DORotate(new Vector3(0, 270, 0), 0.6f, RotateMode.FastBeyond360))
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(-3.3f, 2f))
+            .Join(transform.DOMoveX(-3.3f, 2.5f))
             .AppendCallback(PlayRotateAnimation)
-            .Join(transform.DORotate(new Vector3(0, 90, 0), 0.7f, RotateMode.FastBeyond360))
+            .Join(transform.DORotate(new Vector3(0, 90, 0), 0.6f, RotateMode.FastBeyond360))
             .SetEase(Ease.Linear)
             .SetLoops(-1);
     }
