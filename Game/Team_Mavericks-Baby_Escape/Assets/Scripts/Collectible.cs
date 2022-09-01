@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Collectible : MonoBehaviour
 {
@@ -11,7 +13,13 @@ public class Collectible : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            StartCoroutine(NextLevel());
         }
+    }
+
+    private IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(0.05f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
