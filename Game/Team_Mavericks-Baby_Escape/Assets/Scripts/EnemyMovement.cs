@@ -7,6 +7,13 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private Sequence _sequence;
 
+    [SerializeField] private float _endPositionA;
+    [SerializeField] private float _endPositionB;
+    [SerializeField] private float _movementDuration;
+    [Range(0,360)] [SerializeField] private float _rotationAngleA;
+    [Range(0,360)] [SerializeField] private float _rotationAngleB;
+    [Range(0, 1)] [SerializeField] private float _rotationDuration;
+
     private static int IdleKey = Animator.StringToHash("Idle");
     private static int WalkingKey = Animator.StringToHash("Walking");
     private static int RotatingKey = Animator.StringToHash("Rotating");
@@ -26,13 +33,13 @@ public class EnemyMovement : MonoBehaviour
         _sequence = DOTween.Sequence()
             .AppendCallback(PlayIdleAnimation)
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(3.3f, 2.5f))
+            .Join(transform.DOMoveX(_endPositionA, _movementDuration))
             .AppendCallback(PlayRotateAnimation)
-            .Join(transform.DORotate(new Vector3(0, 270, 0), 0.6f, RotateMode.FastBeyond360))
+            .Join(transform.DORotate(new Vector3(0, _rotationAngleA, 0), _rotationDuration, RotateMode.FastBeyond360))
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(-3.3f, 2.5f))
+            .Join(transform.DOMoveX(_endPositionB, _movementDuration))
             .AppendCallback(PlayRotateAnimation)
-            .Join(transform.DORotate(new Vector3(0, 90, 0), 0.6f, RotateMode.FastBeyond360))
+            .Join(transform.DORotate(new Vector3(0, _rotationAngleB, 0), _rotationDuration, RotateMode.FastBeyond360))
             .SetEase(Ease.Linear)
             .SetLoops(-1);
     }
