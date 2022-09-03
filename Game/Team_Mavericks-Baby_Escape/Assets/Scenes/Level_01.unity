@@ -647,8 +647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea229a7196f6754590554f953c77950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endPositionA: 3.3
-  _endPositionB: -3.3
+  _endPositionA: {x: 3.3, y: 0.5, z: -0.68}
+  _endPositionB: {x: -3.3, y: 0.5, z: -0.68}
   _movementDuration: 2.5
   _rotationAngleA: 270
   _rotationAngleB: 90
@@ -1287,9 +1287,6 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
-  _obstructionMask:
-    serializedVersion: 2
-    m_Bits: 512
   _CanSeePlayer: 1
 --- !u!108 &516568942
 Light:

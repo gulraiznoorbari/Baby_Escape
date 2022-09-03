@@ -7,8 +7,8 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody _rigidbody;
     private Sequence _sequence;
 
-    [SerializeField] private float _endPositionA;
-    [SerializeField] private float _endPositionB;
+    [SerializeField] private Vector3 _endPositionA;
+    [SerializeField] private Vector3 _endPositionB;
     [SerializeField] private float _movementDuration;
     [Range(0,360)] [SerializeField] private float _rotationAngleA;
     [Range(0,360)] [SerializeField] private float _rotationAngleB;
@@ -33,11 +33,11 @@ public class EnemyMovement : MonoBehaviour
         _sequence = DOTween.Sequence()
             .AppendCallback(PlayIdleAnimation)
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(_endPositionA, _movementDuration))
+            .Join(transform.DOMove(_endPositionA, _movementDuration))
             .AppendCallback(PlayRotateAnimation)
             .Join(transform.DORotate(new Vector3(0, _rotationAngleA, 0), _rotationDuration, RotateMode.FastBeyond360))
             .AppendCallback(PlayWalkAnimation)
-            .Join(transform.DOMoveX(_endPositionB, _movementDuration))
+            .Join(transform.DOMove(_endPositionB, _movementDuration))
             .AppendCallback(PlayRotateAnimation)
             .Join(transform.DORotate(new Vector3(0, _rotationAngleB, 0), _rotationDuration, RotateMode.FastBeyond360))
             .SetEase(Ease.Linear)

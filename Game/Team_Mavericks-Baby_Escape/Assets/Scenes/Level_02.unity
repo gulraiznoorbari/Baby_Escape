@@ -605,8 +605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea229a7196f6754590554f953c77950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endPositionA: 4.15
-  _endPositionB: -4.5
+  _endPositionA: {x: 4.5, y: 0.5, z: -2.5}
+  _endPositionB: {x: -4.5, y: 0.5, z: -2.5}
   _movementDuration: 3
   _rotationAngleA: 270
   _rotationAngleB: 90
@@ -1030,9 +1030,6 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
-  _obstructionMask:
-    serializedVersion: 2
-    m_Bits: 512
   _CanSeePlayer: 1
 --- !u!108 &516568942
 Light:
@@ -3076,9 +3073,6 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
-  _obstructionMask:
-    serializedVersion: 2
-    m_Bits: 512
   _CanSeePlayer: 1
 --- !u!108 &1214785044
 Light:
@@ -4189,8 +4183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea229a7196f6754590554f953c77950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endPositionA: -2
-  _endPositionB: 4.3
+  _endPositionA: {x: -2, y: 0.5, z: 6}
+  _endPositionB: {x: 4.3, y: 0.5, z: 6}
   _movementDuration: 3
   _rotationAngleA: 90
   _rotationAngleB: 270
