@@ -8,7 +8,6 @@ public class FieldOfView : MonoBehaviour
     public float _radius;
     public GameObject _playerRef;
     public LayerMask _playerMask;
-    public LayerMask _obstructionMask;
     public bool _CanSeePlayer;
 
     private void Start()
@@ -45,7 +44,7 @@ public class FieldOfView : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 // Player Detection through Raycast:
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
+                if (Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _playerMask))
                 {
                     _CanSeePlayer = true;
                     //Debug.Log("Player Spotted!");
