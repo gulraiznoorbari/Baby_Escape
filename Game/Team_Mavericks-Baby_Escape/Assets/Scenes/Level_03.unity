@@ -829,7 +829,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 291610236acdbfa4893ac5b88a6f4857, type: 2}
+  - {fileID: 2100000, guid: d25882a666cfdf145bec322f26117cb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1208,6 +1208,9 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
+  _obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   _CanSeePlayer: 1
 --- !u!108 &516568942
 Light:
@@ -2369,7 +2372,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0.65980494, b: 0.15566039, a: 0}
+  m_BackGroundColor: {r: 0.39871836, g: 0.252314, b: 0.6603774, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3494,6 +3497,9 @@ MonoBehaviour:
   _playerMask:
     serializedVersion: 2
     m_Bits: 256
+  _obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
   _CanSeePlayer: 1
 --- !u!108 &1214785044
 Light:
