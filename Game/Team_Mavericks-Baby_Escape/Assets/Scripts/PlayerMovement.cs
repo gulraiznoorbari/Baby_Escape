@@ -4,11 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private float _speed;
+    [SerializeField] private float _rotationSpeed;
+
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Touch _touch;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _rotationSpeed;
 
     int isRunningKey;
 

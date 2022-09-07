@@ -3,9 +3,6 @@ using DG.Tweening;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Animator _animator;
-    private Rigidbody _rigidbody;
-    private Sequence _sequence;
 
     [SerializeField] private Vector3 _endPositionA;
     [SerializeField] private Vector3 _endPositionB;
@@ -13,6 +10,10 @@ public class EnemyMovement : MonoBehaviour
     [Range(0,360)] [SerializeField] private float _rotationAngleA;
     [Range(0,360)] [SerializeField] private float _rotationAngleB;
     [Range(0, 1)] [SerializeField] private float _rotationDuration;
+
+    private Animator _animator;
+    private Rigidbody _rigidbody;
+    private Sequence _sequence;
 
     private static int IdleKey = Animator.StringToHash("Idle");
     private static int WalkingKey = Animator.StringToHash("Walking");

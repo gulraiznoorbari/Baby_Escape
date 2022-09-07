@@ -5,10 +5,12 @@ using System.Collections;
 public class FieldOfView : MonoBehaviour
 {
     [Range(0, 360)] public float _angle;
-    public float _radius;
+
     public GameObject _playerRef;
     public LayerMask _playerMask;
     public LayerMask _obstructionMask;
+
+    public float _radius;
     public bool _CanSeePlayer;
 
     private void Start()
@@ -20,7 +22,7 @@ public class FieldOfView : MonoBehaviour
     private IEnumerator FOVCoroutine ()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
-
+       
         while(true)
         {
             yield return wait;
