@@ -60,13 +60,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Collectible"))
         {
-            StartCoroutine(Restart());
+            StartCoroutine(NextLevel());
         }
     }
 
-    private IEnumerator Restart()
+    private IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(0.2f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
