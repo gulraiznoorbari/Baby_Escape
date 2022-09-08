@@ -9,14 +9,12 @@ public class LaserDetector : MonoBehaviour
     private LineRenderer _laserline;
     private ParticleSystem _particleSystem;
 
+    private bool _isLaserInitialized = false;
+
     private void Awake()
     {
         _laserline = GetComponent<LineRenderer>();
         _particleSystem = GameObject.Find("startPoint").GetComponent<ParticleSystem>();
-    }
-
-    private void Start()
-    {
         _particleSystem.Stop();
     }
 
@@ -27,23 +25,24 @@ public class LaserDetector : MonoBehaviour
         _laserline.SetPosition(0, _startPoint.position);
         _laserline.SetPosition(1, _endPoint.position);
         _particleSystem.Play();
-
-        DetectMovingObjects();
+        _isLaserInitialized = true;
     }
 
-    private void DetectMovingObjects()
+    public void DetectMovingObjects()
     {
         RaycastHit hit;
         float RaycastDistance = Vector3.Distance(_startPoint.position, _endPoint.position);
         Vector3 direction = _endPoint.transform.position - _startPoint.transform.position;
         // or you can simply use "transform.forward" for projecting in forward direction.
-
-        if (Physics.Raycast(transform.position, direction, out hit, RaycastDistance, _layerMask))
+        if (_isLaserInitialized == true)
         {
-            if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy"))
+            if (Physics.Raycast(transform.position, direction, out hit, RaycastDistance, _layerMask))
             {
-                Handheld.Vibrate();
-                Destroy(hit.collider.gameObject);
+                if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy"))
+                {
+                    // collision animation (w/ coroutine)
+                    Destroy(hit.collider.gameObject);
+                }
             }
         }
     }

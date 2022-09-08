@@ -11,7 +11,12 @@ public class ActivateLaser : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        int PressedKey = Animator.StringToHash("press");
+        PressedKey = Animator.StringToHash("press");
+    }
+    
+    private void FixedUpdate()
+    {
+        _laserDetector.DetectMovingObjects();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,7 +25,6 @@ public class ActivateLaser : MonoBehaviour
         {
             _animator.SetTrigger(PressedKey);
             _laserDetector.InitiateLaser();
-            Debug.Log("Button Pressed and Laser Activated!");
         }
     }
 }
