@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -54,19 +52,5 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetBool(isRunningKey, false);
         }
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.CompareTag("Collectible"))
-        {
-            StartCoroutine(NextLevel());
-        }
-    }
-
-    private IEnumerator NextLevel()
-    {
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

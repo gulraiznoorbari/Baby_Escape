@@ -6,12 +6,11 @@ public class ActivateLaser : MonoBehaviour
 
     private Animator _animator;
 
-    int PressedKey;
+    private static int PressedKey = Animator.StringToHash("press");
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        PressedKey = Animator.StringToHash("press");
     }
     
     private void FixedUpdate()

@@ -2,19 +2,24 @@
 
 public class LaserDetector : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Transform _startPoint;
     [SerializeField] private Transform _endPoint; 
 
     private LineRenderer _laserline;
-    private ParticleSystem _particleSystem;
+    private GameObject[] _enemyMovements;
+    //private Animator _animator;
 
+    //private static int DyingKey = Animator.StringToHash("Dying");
     private bool _isLaserInitialized = false;
+    public bool _isCollision = false;
 
     private void Awake()
     {
         _laserline = GetComponent<LineRenderer>();
-        _particleSystem = GameObject.Find("startPoint").GetComponent<ParticleSystem>();
+        _enemyMovements = GameObject.FindGameObjectsWithTag("Enemy");
+        //_animator = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>();
         _particleSystem.Stop();
     }
 
@@ -40,8 +45,12 @@ public class LaserDetector : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy"))
                 {
-                    // collision animation (w/ coroutine)
-                    Destroy(hit.collider.gameObject);
+                    _isCollision = true;
+                    foreach (GameObject _enemyMovement in _enemyMovements)
+                    {
+                        _enemyMovement.GetComponent<EnemyMovement>().EnemyDeath();
+                    }
+                    //_animator.SetTrigger(DyingKey);
                 }
             }
         }
