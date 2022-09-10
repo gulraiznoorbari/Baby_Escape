@@ -9,9 +9,7 @@ public class LaserDetector : MonoBehaviour
 
     private LineRenderer _laserline;
     private GameObject[] _enemyMovements;
-    //private Animator _animator;
 
-    //private static int DyingKey = Animator.StringToHash("Dying");
     private bool _isLaserInitialized = false;
     public bool _isCollision = false;
 
@@ -19,7 +17,6 @@ public class LaserDetector : MonoBehaviour
     {
         _laserline = GetComponent<LineRenderer>();
         _enemyMovements = GameObject.FindGameObjectsWithTag("Enemy");
-        //_animator = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Animator>();
         _particleSystem.Stop();
     }
 
@@ -50,7 +47,6 @@ public class LaserDetector : MonoBehaviour
                     {
                         _enemyMovement.GetComponent<EnemyMovement>().EnemyDeath();
                     }
-                    //_animator.SetTrigger(DyingKey);
                 }
             }
         }
