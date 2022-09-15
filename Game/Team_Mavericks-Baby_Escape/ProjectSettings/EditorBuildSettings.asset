@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_05.unity
     guid: a00429bd5d277624f8dfe4635b512d19
+  - enabled: 1
+    path: Assets/Scenes/Game_Finished.unity
+    guid: 059ef0d32d9aa894bbbc866200473538
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b9d86e4344a73434c823f0e631213ff6,
       type: 2}
