@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio; 
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class OptionsMenu : MonoBehaviour
         {
             _audio.Stop();
             Debug.Log(_isAudio);
-
         }
     }
     

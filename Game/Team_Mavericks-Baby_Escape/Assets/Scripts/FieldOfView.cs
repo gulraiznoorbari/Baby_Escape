@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class FieldOfView : MonoBehaviour
 {
     [Range(0, 360)] public float _angle;
+    [SerializeField] private GameObject _levelFailMenu;
 
     public GameObject _playerRef;
     public LayerMask _playerMask;
@@ -20,12 +20,10 @@ public class FieldOfView : MonoBehaviour
     }
 
     private IEnumerator FOVCoroutine ()
-    {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-       
+    {       
         while(true)
         {
-            yield return wait;
+            yield return new WaitForSeconds(0.1f);
             FieldOfViewCheck();
         }
     }
@@ -52,7 +50,7 @@ public class FieldOfView : MonoBehaviour
                     _CanSeePlayer = true;
                     Handheld.Vibrate();
                     Destroy(gameObject);
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    _levelFailMenu.SetActive(true);
                 }
 
                 else

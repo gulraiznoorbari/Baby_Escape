@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Collectible : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
-    [SerializeField] private AudioClip _collectibleSound;
-    AudioSource _audioSource; 
+    [SerializeField] private GameObject _levelCompletionMenu;
+    AudioSource _audioSource;
 
     private void Awake()
     {
@@ -19,21 +18,21 @@ public class Collectible : MonoBehaviour
         transform.Rotate(0, 120 * Time.deltaTime, 0);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            _audioSource.PlayOneShot(_collectibleSound);
+            _audioSource.Play();
             _particleSystem.Stop();
-            Destroy(gameObject);
-            StartCoroutine(NextLevel());
+            StartCoroutine(NextLevel(other));
         }
     }
 
-    private IEnumerator NextLevel()
+    private IEnumerator NextLevel(Collider other)
     {
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
+        Destroy(other.gameObject);
+        _levelCompletionMenu.SetActive(true);
     }
-
 }

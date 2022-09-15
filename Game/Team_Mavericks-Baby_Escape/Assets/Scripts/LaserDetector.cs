@@ -5,7 +5,8 @@ public class LaserDetector : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private Transform _startPoint;
-    [SerializeField] private Transform _endPoint; 
+    [SerializeField] private Transform _endPoint;
+    [SerializeField] private GameObject _levelFailMenu;
 
     private LineRenderer _laserline;
     private GameObject[] _enemyMovements;
@@ -40,13 +41,19 @@ public class LaserDetector : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, direction, out hit, RaycastDistance, _layerMask))
             {
-                if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy"))
+                if (hit.collider.CompareTag("Enemy"))
                 {
                     _isCollision = true;
                     foreach (GameObject _enemyMovement in _enemyMovements)
                     {
                         _enemyMovement.GetComponent<EnemyMovement>().EnemyDeath();
                     }
+                }
+                if (hit.collider.CompareTag("Player"))
+                {
+                    Handheld.Vibrate();
+                    Destroy(gameObject);
+                    _levelFailMenu.SetActive(true);
                 }
             }
         }
