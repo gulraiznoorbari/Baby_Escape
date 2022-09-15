@@ -1,1 +1,1 @@
-> This project is developed using Unity 2019.4.16f1
+> This project was developed using Unity 2019.4.16f1
