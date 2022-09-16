@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class ActivateLaser : MonoBehaviour
 {
@@ -23,7 +24,14 @@ public class ActivateLaser : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             _animator.SetTrigger(PressedKey);
-            _laserDetector.InitiateLaser();
+            FindObjectOfType<AudioManager>().Play("Laser_Switch");
+            StartCoroutine(intializeLaser());
         }
+    }
+
+    private IEnumerator intializeLaser()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _laserDetector.InitiateLaser();
     }
 }

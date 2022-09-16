@@ -18,4 +18,9 @@ public class LoadMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void GameFinished()
+    {
+        FindObjectOfType<AudioManager>().Play("Game_Finish");
+    }
 }

@@ -5,11 +5,9 @@ public class Collectible : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private GameObject _levelCompletionMenu;
-    AudioSource _audioSource;
 
     private void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
         _particleSystem.Play();
     }
 
@@ -22,7 +20,8 @@ public class Collectible : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _audioSource.Play();
+            FindObjectOfType<AudioManager>().Play("Collect");
+            FindObjectOfType<AudioManager>().StopPlaying("Laser");
             _particleSystem.Stop();
             StartCoroutine(NextLevel(other));
         }

@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
                     _rigidbody.transform.rotation,
                     Quaternion.LookRotation(_movementDirection),
                     Time.fixedDeltaTime * _rotationSpeed);
-                _animator.SetBool(isRunningKey, true);
             }
             else if (_touch.phase == TouchPhase.Ended)
             {

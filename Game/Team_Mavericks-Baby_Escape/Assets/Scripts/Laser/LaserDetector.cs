@@ -27,6 +27,7 @@ public class LaserDetector : MonoBehaviour
         _laserline.endWidth = 0.2f;
         _laserline.SetPosition(0, _startPoint.position);
         _laserline.SetPosition(1, _endPoint.position);
+        FindObjectOfType<AudioManager>().Play("Laser");
         _particleSystem.Play();
         _isLaserInitialized = true;
     }

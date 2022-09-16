@@ -1,51 +1,77 @@
-using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-
 	public static AudioManager instance;
-
-	public AudioMixerGroup mixerGroup;
 
 	public Sound[] sounds;
 
-	void Awake()
+	private void Awake()
 	{
-		if (instance != null)
+		if (instance == null)
 		{
-			Destroy(gameObject);
+			instance = this;
 		}
 		else
 		{
-			instance = this;
-			DontDestroyOnLoad(gameObject);
+			Destroy(gameObject);
+            return;
 		}
+	    DontDestroyOnLoad(gameObject);
 
 		foreach (Sound s in sounds)
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.clip;
-			s.source.loop = s.loop;
-
-			s.source.outputAudioMixerGroup = mixerGroup;
-		}
+            s.source.loop = s.loop;
+            s.source.mute = s.mute;
+        }
 	}
 
-	public void Play(string sound)
+    private void Start()
+    {
+        Play("Theme");
+    }
+
+    private void Update()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+        
+    }
+
+    public void Play(string name)
 	{
-		Sound s = Array.Find(sounds, item => item.name == sound);
+		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + name + " not found!");
 			return;
 		}
-
-		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
-
 		s.source.Play();
 	}
 
+    public void StopPlaying(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+        s.source.Stop();
+    }
+
+    public void ToggleSound()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.mute = !s.source.mute;
+            s.mute = s.source.mute;
+        }
+    }
 }
