@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [Range(0,360)] [SerializeField] private float _rotationAngleB;
     [Range(0, 1)] [SerializeField] private float _rotationDuration;
     [SerializeField] private LaserDetector _laserDetector;
+    [SerializeField] private GameObject _fieldOfView;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
@@ -57,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
                 .AppendCallback(PlayDyingAnimation)
                 .Join(transform.DOMove(transform.position, 0.05f))
                 .SetEase(Ease.Linear);
+            _fieldOfView.SetActive(false);
         }
     }
 

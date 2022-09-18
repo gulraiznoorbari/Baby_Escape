@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
                 // Rigidbody.MovePosition() takes position in world space as parameter, not direction.
                 // World space position is basically what transform.position is.
                 _rigidbody.MovePosition(Vector3.MoveTowards(transform.position, _movementDirection, Time.fixedDeltaTime * _speed));
-
+                _rigidbody.transform.LookAt(_movementDirection, Vector3.up);
                 //Rotate towards the direction of the movement (w/ slerp):
                 _rigidbody.transform.rotation = Quaternion.Slerp(
                     _rigidbody.transform.rotation,

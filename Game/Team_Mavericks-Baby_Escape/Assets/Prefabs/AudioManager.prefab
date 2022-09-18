@@ -45,22 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 182e7e63d2ff6284eb44d0fad3b40135, type: 3}
-    volume: 0.2
+    clip: {fileID: 8300000, guid: a4d2b42ed8b8ca44086dea1bd4d9445b, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 1
     mute: 0
     source: {fileID: 0}
   - name: Collect
     clip: {fileID: 8300000, guid: b824d4252dd218746943e7c6e514035f, type: 3}
-    volume: 0.4
+    volume: 0.9
     pitch: 1
     loop: 0
     mute: 0
     source: {fileID: 0}
   - name: Laser_Switch
     clip: {fileID: 8300000, guid: fe85f69ac0bb35d45a137b25377120d7, type: 3}
-    volume: 0.85
+    volume: 1
     pitch: 1
     loop: 0
     mute: 0
@@ -74,14 +74,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Button_Click
     clip: {fileID: 8300000, guid: 42053d7596dceba4f8a1fde0a9d35a53, type: 3}
-    volume: 0.85
+    volume: 1
     pitch: 1
     loop: 0
     mute: 0
     source: {fileID: 0}
   - name: Game_Finish
     clip: {fileID: 8300000, guid: fdd96f1e3f448964aaef7ea76dc71ab3, type: 3}
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
     mute: 0

@@ -16,7 +16,7 @@ public class LoadMenu : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Level_01");
     }
 
     public void GameFinished()
